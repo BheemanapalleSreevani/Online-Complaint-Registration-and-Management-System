@@ -57,26 +57,7 @@ online-complaint/
 ### Prerequisite
 Make sure you have [Node.js](https://nodejs.org/) (v16+) and [MongoDB](https://www.mongodb.com/) installed/accessible.
 
-### Step 1: Clone or Open Workspace
-Place the folders inside your working directory (e.g., `E:\online complaint`).
 
-### Step 2: Configure Backend Environment Variables
-Create a file named `.env` inside the `backend/` directory:
-
-```env
-PORT=5000
-MONGO_URI=mongodb+srv://sreevani940_db_user:sree2005@cluster0.0lqznpj.mongodb.net/online_complaints?retryWrites=true&w=majority
-JWT_SECRET=supersecuresecretkey12345
-JWT_EXPIRES_IN=7d
-NODE_ENV=development
-
-# Email Notification setup (Fallback console logger exists)
-SMTP_HOST=smtp.mailtrap.io
-SMTP_PORT=2525
-SMTP_USER=mockuser
-SMTP_PASS=mockpass
-EMAIL_FROM=noreply@onlinecomplaints.gov.in
-```
 
 ### Step 3: Install Dependencies
 Open a terminal and run:
