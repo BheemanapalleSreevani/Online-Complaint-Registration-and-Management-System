@@ -1,0 +1,173 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Online Complaint Registration & Management API",
+    "version": "1.0.0",
+    "description": "Production ready MERN API endpoints for auth, citizen complaints, comments, notifications, ratings, admin reports, and dashboards."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000",
+      "description": "Development Server"
+    }
+  ],
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "summary": "Register a new Citizen account",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "email", "password"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "email": { "type": "string", "format": "email" },
+                  "password": { "type": "string", "minLength": 6 },
+                  "phone": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "User created, token returned" }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "summary": "Authenticate User & obtain JWT token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": {
+                  "email": { "type": "string", "format": "email" },
+                  "password": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Token generated successfully" }
+        }
+      }
+    },
+    "/api/complaints": {
+      "post": {
+        "summary": "Citizen logs a complaint",
+        "description": "Requires JWT token authorization with Citizen role. Allows multipart/form-data upload for file attachments.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "description", "category", "location"],
+                "properties": {
+                  "title": { "type": "string" },
+                  "description": { "type": "string" },
+                  "category": { "type": "string", "description": "Category ObjectId" },
+                  "location": { "type": "string" },
+                  "priority": { "type": "string", "enum": ["Low", "Medium", "High", "Critical"] },
+                  "attachments": {
+                    "type": "array",
+                    "items": { "type": "string", "format": "binary" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Complaint created successfully" }
+        }
+      },
+      "get": {
+        "summary": "List all complaints",
+        "description": "Admin retrieves all. Citizen retrieves only their own. Supports filters, search query, and pagination.",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "name": "status", "in": "query", "schema": { "type": "string" } },
+          { "name": "priority", "in": "query", "schema": { "type": "string" } },
+          { "name": "category", "in": "query", "schema": { "type": "string" } },
+          { "name": "search", "in": "query", "schema": { "type": "string" } },
+          { "name": "page", "in": "query", "schema": { "type": "integer" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": { "description": "A paginated list of complaints" }
+        }
+      }
+    },
+    "/api/complaints/{id}": {
+      "get": {
+        "summary": "Get details of a complaint",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Complaint object with timeline logs and comments" }
+        }
+      }
+    },
+    "/api/complaints/{id}/status": {
+      "put": {
+        "summary": "Update status & details (Admin only)",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": { "type": "string", "enum": ["Submitted", "Under Review", "In Progress", "Resolved", "Closed", "Rejected"] },
+                  "priority": { "type": "string", "enum": ["Low", "Medium", "High", "Critical"] },
+                  "message": { "type": "string", "description": "Timeline log notes" },
+                  "assignedToId": { "type": "string", "description": "Officer Admin User ObjectId" },
+                  "resolutionNotes": { "type": "string" },
+                  "attachments": {
+                    "type": "array",
+                    "items": { "type": "string", "format": "binary" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Complaint updated successfully" }
+        }
+      }
+    },
+    "/api/dashboard/admin": {
+      "get": {
+        "summary": "Fetch admin dashboard metrics",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Detailed analytic stats" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

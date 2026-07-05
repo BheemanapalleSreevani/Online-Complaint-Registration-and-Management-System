@@ -1,0 +1,29 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50: '#EEF2F6',
+          100: '#E0E7FF',
+          500: '#6366F1', // Indigo base
+          600: '#4F46E5', // Indigo dark
+          700: '#4338CA',
+          800: '#3730A3',
+          900: '#1E1B4B',
+        },
+        slate: {
+          50: '#F8FAFC',
+          100: '#F1F5F9',
+          800: '#1E293B',
+          900: '#0F172A',
+        }
+      }
+    },
+  },
+  plugins: [],
+}
