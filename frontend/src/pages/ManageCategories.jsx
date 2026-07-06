@@ -108,41 +108,41 @@ const ManageCategories = () => {
   };
 
   return (
-    <div className="flex-1 p-6 overflow-y-auto animate-fade-in flex flex-col md:flex-row gap-6 text-slate-100">
+    <div className="flex-1 p-6 overflow-y-auto animate-fade-in flex flex-col md:flex-row gap-6 text-slate-800">
       {/* Table List of Categories */}
-      <div className="flex-1 bg-zinc-900 rounded-2xl border border-zinc-800 shadow-sm overflow-hidden flex flex-col justify-between">
-        <div className="p-5 border-b border-zinc-850 flex items-center justify-between">
+      <div className="flex-1 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between shadow-slate-100/50">
+        <div className="p-5 border-b border-slate-100 flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-extrabold text-slate-200 tracking-tight">Category Dashboard</h2>
-            <p className="text-zinc-500 text-xs">A list of all grievance types currently accessible by citizens.</p>
+            <h2 className="text-lg font-extrabold text-slate-900 tracking-tight">Category Dashboard</h2>
+            <p className="text-slate-500 text-xs font-medium">A list of all grievance types currently accessible by citizens.</p>
           </div>
         </div>
 
         <div className="overflow-x-auto flex-1">
           {loading ? (
             <div className="flex items-center justify-center py-20">
-              <div className="w-8 h-8 border-4 border-brand-650 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
             </div>
           ) : (
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-zinc-950/60 border-b border-zinc-850 text-zinc-500 text-[10px] font-bold uppercase tracking-wider">
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 text-[10px] font-bold uppercase tracking-wider">
                   <th className="px-6 py-4">Name</th>
                   <th className="px-6 py-4">Description</th>
                   <th className="px-6 py-4 text-center">Status</th>
                   <th className="px-6 py-4 text-center">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-850 text-xs font-semibold text-zinc-400">
+              <tbody className="divide-y divide-slate-100 text-xs font-semibold text-slate-655">
                 {categories.map((cat) => (
-                  <tr key={cat._id} className="hover:bg-zinc-800/15 transition-colors">
-                    <td className="px-6 py-4 font-bold text-slate-300">{cat.name}</td>
-                    <td className="px-6 py-4 max-w-[250px] truncate text-zinc-500 font-medium">{cat.description}</td>
+                  <tr key={cat._id} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="px-6 py-4 font-bold text-slate-800">{cat.name}</td>
+                    <td className="px-6 py-4 max-w-[250px] truncate text-slate-500 font-medium">{cat.description}</td>
                     <td className="px-6 py-4 text-center">
                       <button
                         onClick={() => handleToggleActive(cat)}
                         className={`status-badge uppercase text-[9px] font-bold cursor-pointer hover:opacity-85 border ${
-                          cat.active ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25' : 'bg-rose-500/10 text-rose-450 border-rose-500/25'
+                          cat.active ? 'bg-teal-55 bg-teal-50 text-teal-600 border-teal-200/60' : 'bg-rose-50 text-rose-600 border-rose-200/60'
                         }`}
                       >
                         {cat.active ? <Check size={10} className="inline mr-0.5" /> : <X size={10} className="inline mr-0.5" />}
@@ -152,14 +152,14 @@ const ManageCategories = () => {
                     <td className="px-6 py-4 text-center flex items-center justify-center gap-2">
                       <button
                         onClick={() => handleEditClick(cat)}
-                        className="p-1.5 hover:bg-zinc-800 rounded-lg text-zinc-500 hover:text-brand-400 transition-colors cursor-pointer"
+                        className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-brand-600 transition-colors cursor-pointer"
                         title="Edit Details"
                       >
                         <Pencil size={14} />
                       </button>
                       <button
                         onClick={() => handleDeleteClick(cat._id)}
-                        className="p-1.5 hover:bg-rose-500/15 rounded-lg text-zinc-500 hover:text-rose-400 transition-colors cursor-pointer"
+                        className="p-1.5 hover:bg-rose-50 rounded-lg text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
                         title="Remove Category"
                       >
                         <Trash size={14} />
@@ -174,24 +174,24 @@ const ManageCategories = () => {
       </div>
 
       {/* Action form panel */}
-      <div className="w-full md:w-80 bg-zinc-900 rounded-2xl border border-zinc-800 shadow-sm p-5 self-start">
-        <h3 className="text-sm font-extrabold text-slate-200 mb-4 tracking-tight flex items-center gap-1.5 pb-3 border-b border-zinc-850">
-          <FolderPlus size={16} className="text-brand-400" /> {editingId ? 'Edit Category' : 'Add Category'}
+      <div className="w-full md:w-80 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 self-start shadow-slate-100/50">
+        <h3 className="text-sm font-extrabold text-slate-850 mb-4 tracking-tight flex items-center gap-1.5 pb-3 border-b border-slate-100">
+          <FolderPlus size={16} className="text-brand-600" /> {editingId ? 'Edit Category' : 'Add Category'}
         </h3>
 
         {successMsg && (
-          <div className="mb-4 p-3 bg-emerald-500/10 border border-emerald-500/25 text-emerald-450 text-xs font-semibold rounded-xl">
+          <div className="mb-4 p-3 bg-emerald-50 border border-emerald-100 text-emerald-600 text-xs font-semibold rounded-xl">
             {successMsg}
           </div>
         )}
 
         {errorMsg && (
-          <div className="mb-4 p-3 bg-rose-500/10 border border-rose-500/25 text-rose-450 text-xs font-semibold rounded-xl flex gap-1.5">
+          <div className="mb-4 p-3 bg-rose-50 border border-rose-100 text-rose-600 text-xs font-semibold rounded-xl flex gap-1.5">
             <AlertTriangle size={14} className="shrink-0 mt-0.5" /> <span>{errorMsg}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-xs font-bold text-zinc-400">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-xs font-bold text-slate-600">
           <div className="flex flex-col gap-1.5">
             <label>Category Title *</label>
             <input
@@ -199,7 +199,7 @@ const ManageCategories = () => {
               placeholder="e.g. Electricity & Power"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-xs font-semibold text-slate-200 placeholder:text-zinc-650 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+              className="w-full p-2.5 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
               required
             />
           </div>
@@ -211,7 +211,7 @@ const ManageCategories = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
-              className="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-xs font-medium text-slate-200 placeholder:text-zinc-650 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+              className="w-full p-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
               required
             ></textarea>
           </div>
@@ -223,9 +223,9 @@ const ManageCategories = () => {
                 id="cat-active"
                 checked={active}
                 onChange={(e) => setActive(e.target.checked)}
-                className="w-4 h-4 text-brand-500 border-zinc-800 rounded bg-zinc-950 cursor-pointer"
+                className="w-4 h-4 text-brand-600 border-slate-200 rounded bg-white cursor-pointer"
               />
-              <label htmlFor="cat-active" className="text-zinc-450 select-none cursor-pointer">Mark as Active</label>
+              <label htmlFor="cat-active" className="text-slate-600 select-none cursor-pointer font-bold">Mark as Active</label>
             </div>
           )}
 
@@ -237,7 +237,7 @@ const ManageCategories = () => {
               <button
                 type="button"
                 onClick={handleResetForm}
-                className="btn-secondary py-2 px-4 text-xs bg-zinc-950 hover:bg-zinc-800 text-zinc-450 border border-zinc-800 flex-1 cursor-pointer"
+                className="btn-secondary py-2 px-4 text-xs bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex-1 cursor-pointer"
               >
                 Cancel
               </button>

@@ -33,7 +33,7 @@ import Reports from './pages/Reports';
 // Dashboard layout wrapping navbar & sidebar
 const DashboardLayout = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-950">
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
       <Navbar />
       <div className="flex flex-1">
         <Sidebar />

@@ -77,17 +77,17 @@ const Reports = () => {
   };
 
   return (
-    <div className="flex-1 p-6 overflow-y-auto animate-fade-in flex flex-col gap-6 text-slate-100">
+    <div className="flex-1 p-6 overflow-y-auto animate-fade-in flex flex-col gap-6 text-slate-800">
       <div>
-        <h2 className="text-2xl font-extrabold text-slate-100 tracking-tight">Analytical Reports & Export</h2>
-        <p className="text-zinc-500 text-xs">Configure analytical grids, filter variables, and download signed Excel spreadsheets or printable PDF tables.</p>
+        <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">Analytical Reports & Export</h2>
+        <p className="text-slate-500 text-xs font-medium">Configure analytical grids, filter variables, and download signed Excel spreadsheets or printable PDF tables.</p>
       </div>
 
       {/* Export parameters form */}
-      <div className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6 shadow-sm flex flex-col gap-5">
-        <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Define Report Filters</h3>
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col gap-5 shadow-slate-100/50">
+        <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Define Report Filters</h3>
         
-        <form onSubmit={handlePreview} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-xs font-bold text-zinc-400">
+        <form onSubmit={handlePreview} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-xs font-bold text-slate-600">
           {/* Keyword search */}
           <div className="flex flex-col gap-1.5">
             <label>Search Keyword</label>
@@ -96,7 +96,7 @@ const Reports = () => {
               placeholder="e.g. Broken pipe, Sector 4..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl font-semibold text-slate-200 placeholder:text-zinc-650 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+              className="w-full p-2.5 bg-white border border-slate-200 rounded-xl font-semibold text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
             />
           </div>
 
@@ -106,15 +106,15 @@ const Reports = () => {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              className="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl font-semibold text-slate-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+              className="w-full p-2.5 bg-white border border-slate-200 rounded-xl font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
             >
-              <option value="" className="bg-zinc-900">All Statuses</option>
-              <option value="Submitted" className="bg-zinc-900">Submitted</option>
-              <option value="Under Review" className="bg-zinc-900">Under Review</option>
-              <option value="In Progress" className="bg-zinc-900">In Progress</option>
-              <option value="Resolved" className="bg-zinc-900">Resolved</option>
-              <option value="Closed" className="bg-zinc-900">Closed</option>
-              <option value="Rejected" className="bg-zinc-900">Rejected</option>
+              <option value="">All Statuses</option>
+              <option value="Submitted">Submitted</option>
+              <option value="Under Review">Under Review</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Resolved">Resolved</option>
+              <option value="Closed">Closed</option>
+              <option value="Rejected">Rejected</option>
             </select>
           </div>
 
@@ -124,11 +124,11 @@ const Reports = () => {
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl font-semibold text-slate-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+              className="w-full p-2.5 bg-white border border-slate-200 rounded-xl font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
             >
-              <option value="" className="bg-zinc-900">All Categories</option>
+              <option value="">All Categories</option>
               {categories.map((cat) => (
-                <option key={cat._id} value={cat._id} className="bg-zinc-900">{cat.name}</option>
+                <option key={cat._id} value={cat._id}>{cat.name}</option>
               ))}
             </select>
           </div>
@@ -139,13 +139,13 @@ const Reports = () => {
             <select
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
-              className="w-full p-2.5 bg-zinc-950 border border-zinc-800 rounded-xl font-semibold text-slate-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+              className="w-full p-2.5 bg-white border border-slate-200 rounded-xl font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
             >
-              <option value="" className="bg-zinc-900">All Priorities</option>
-              <option value="Low" className="bg-zinc-900">Low</option>
-              <option value="Medium" className="bg-zinc-900">Medium</option>
-              <option value="High" className="bg-zinc-900">High</option>
-              <option value="Critical" className="bg-zinc-900">Critical</option>
+              <option value="">All Priorities</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Critical">Critical</option>
             </select>
           </div>
 
@@ -156,7 +156,7 @@ const Reports = () => {
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="w-full p-2 bg-zinc-950 border border-zinc-800 rounded-xl font-semibold text-slate-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+              className="w-full p-2 bg-white border border-slate-200 rounded-xl font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
             />
           </div>
 
@@ -167,11 +167,11 @@ const Reports = () => {
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="w-full p-2 bg-zinc-950 border border-zinc-800 rounded-xl font-semibold text-slate-200 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+              className="w-full p-2 bg-white border border-slate-200 rounded-xl font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
             />
           </div>
 
-          <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex flex-wrap gap-3 pt-3 border-t border-zinc-850 mt-2">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex flex-wrap gap-3 pt-3 border-t border-slate-100 mt-2">
             <button type="submit" className="btn-primary py-2.5 px-6 font-bold cursor-pointer">
               Generate Report Grid
             </button>
@@ -179,7 +179,7 @@ const Reports = () => {
             <button
               type="button"
               onClick={() => handleExport('excel')}
-              className="btn-secondary py-2.5 px-5 bg-emerald-500/10 text-emerald-450 hover:bg-emerald-500/20 border border-emerald-500/25 font-bold cursor-pointer flex items-center gap-1"
+              className="btn-secondary py-2.5 px-5 bg-teal-50 text-teal-600 hover:bg-teal-100/60 border border-teal-200 font-bold cursor-pointer flex items-center gap-1.5 shadow-sm"
             >
               <FileSpreadsheet size={16} /> Download Excel Spreadsheet
             </button>
@@ -187,7 +187,7 @@ const Reports = () => {
             <button
               type="button"
               onClick={() => handleExport('pdf')}
-              className="btn-secondary py-2.5 px-5 bg-rose-500/10 text-rose-450 hover:bg-rose-500/20 border border-rose-500/25 font-bold cursor-pointer flex items-center gap-1"
+              className="btn-secondary py-2.5 px-5 bg-rose-50 text-rose-600 hover:bg-rose-100/60 border border-rose-200 font-bold cursor-pointer flex items-center gap-1.5 shadow-sm"
             >
               <FileDown size={16} /> Download Printable PDF Report
             </button>
@@ -196,51 +196,51 @@ const Reports = () => {
       </div>
 
       {/* Preview Table */}
-      <div className="bg-zinc-900 rounded-2xl border border-zinc-800 shadow-sm overflow-hidden flex-1 flex flex-col justify-between">
-        <div className="p-5 border-b border-zinc-850">
-          <h3 className="text-sm font-extrabold text-slate-200 tracking-tight">Report Preview Grid</h3>
-          <p className="text-zinc-500 text-xs">Preview of the matching grievances list to be exported ({complaints.length} records matched).</p>
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex-1 flex flex-col justify-between shadow-slate-100/50">
+        <div className="p-5 border-b border-slate-100">
+          <h3 className="text-sm font-extrabold text-slate-900 tracking-tight">Report Preview Grid</h3>
+          <p className="text-slate-500 text-xs font-medium">Preview of the matching grievances list to be exported ({complaints.length} records matched).</p>
         </div>
 
         <div className="overflow-x-auto">
           {loading ? (
             <div className="flex items-center justify-center py-20">
-              <div className="w-8 h-8 border-4 border-brand-650 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
             </div>
           ) : complaints.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
-              <AlertCircle className="text-zinc-650 mb-2" size={36} />
-              <h3 className="font-bold text-slate-300 text-sm">No match preview records</h3>
-              <p className="text-zinc-500 text-xs">Modify filter bounds or date ranges.</p>
+              <AlertCircle className="text-slate-400 mb-2" size={36} />
+              <h3 className="font-bold text-slate-700 text-sm">No match preview records</h3>
+              <p className="text-slate-450 text-xs font-medium">Modify filter bounds or date ranges.</p>
             </div>
           ) : (
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-zinc-950/60 border-b border-zinc-850 text-zinc-500 text-[10px] font-bold uppercase tracking-wider">
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 text-[10px] font-bold uppercase tracking-wider">
                   <th className="px-6 py-4">Complaint ID</th>
                   <th className="px-6 py-4">Title</th>
                   <th className="px-6 py-4">Citizen</th>
                   <th className="px-6 py-4">Category</th>
-                  <th className="px-6 py-4">Priority</th>
-                  <th className="px-6 py-4">Status</th>
+                  <th className="px-6 py-4 font-bold">Priority</th>
+                  <th className="px-6 py-4 font-bold">Status</th>
                   <th className="px-6 py-4">Filed Date</th>
                   <th className="px-6 py-4 text-center">Detail</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-850 text-xs font-medium text-zinc-400">
+              <tbody className="divide-y divide-slate-100 text-xs font-semibold text-slate-655">
                 {complaints.map((comp) => (
-                  <tr key={comp._id} className="hover:bg-zinc-800/15 transition-colors">
-                    <td className="px-6 py-4 text-brand-400 font-extrabold">{comp.complaintId}</td>
-                    <td className="px-6 py-4 max-w-[200px] truncate font-bold text-slate-300">{comp.title}</td>
-                    <td className="px-6 py-4 font-semibold text-slate-300">{comp.citizen?.name}</td>
-                    <td className="px-6 py-4">{comp.category?.name || 'N/A'}</td>
-                    <td className="px-6 py-4 font-semibold text-zinc-550">{comp.priority}</td>
-                    <td className="px-6 py-4 font-semibold">{comp.status}</td>
-                    <td className="px-6 py-4 text-zinc-500 font-semibold">{new Date(comp.createdAt).toLocaleDateString()}</td>
+                  <tr key={comp._id} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="px-6 py-4 text-brand-600 font-extrabold">{comp.complaintId}</td>
+                    <td className="px-6 py-4 max-w-[200px] truncate font-bold text-slate-800">{comp.title}</td>
+                    <td className="px-6 py-4 font-semibold text-slate-800">{comp.citizen?.name}</td>
+                    <td className="px-6 py-4 font-medium">{comp.category?.name || 'N/A'}</td>
+                    <td className="px-6 py-4 font-semibold text-slate-500">{comp.priority}</td>
+                    <td className="px-6 py-4 font-semibold text-slate-600">{comp.status}</td>
+                    <td className="px-6 py-4 text-slate-400 font-medium">{new Date(comp.createdAt).toLocaleDateString()}</td>
                     <td className="px-6 py-4 text-center">
                       <Link
                         to={`/admin/complaints/${comp._id}`}
-                        className="p-1 hover:bg-zinc-850 rounded-lg text-zinc-500 hover:text-brand-400 inline-block cursor-pointer"
+                        className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-brand-600 inline-block cursor-pointer"
                       >
                         <Eye size={14} />
                       </Link>

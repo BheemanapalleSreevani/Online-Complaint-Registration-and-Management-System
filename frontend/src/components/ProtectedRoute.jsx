@@ -7,10 +7,10 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-slate-100">
+      <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] text-slate-800">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-12 h-12 border-4 border-brand-500 border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-zinc-500 font-medium animate-pulse">Verifying credentials...</span>
+          <div className="w-12 h-12 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-slate-500 font-bold animate-pulse text-xs uppercase tracking-wider">Verifying credentials...</span>
         </div>
       </div>
     );
